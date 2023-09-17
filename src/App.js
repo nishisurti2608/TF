@@ -3,10 +3,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import Body from "./Components/Body/Body";
 import Error from "./Components/Error/Error";
+
 const App = () => {
   return (
     <div className="App">
-      <RouterProvider router={appRouter} />
+      <Body />
     </div>
   );
 };
@@ -14,9 +15,26 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
-        path: "/",
+        path: "/services",
+        element: <Body />,
+      },
+      {
+        path: "/about-us",
+        element: <Body />,
+      },
+      {
+        path: "/contact-us",
+        element: <Body />,
+      },
+      {
+        path: "/blog",
+        element: <Body />,
+      },
+      {
+        path: "/faq",
         element: <Body />,
       },
     ],
@@ -24,5 +42,6 @@ const appRouter = createBrowserRouter([
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+const root = ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={appRouter} />
+);
